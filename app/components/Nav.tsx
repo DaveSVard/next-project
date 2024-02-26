@@ -30,6 +30,30 @@ export const Nav = () => {
             </li>
             <li>
               <Link
+                className={`${"nav-list__item"} ${pathname === "/users" ? "active" : ""}`}
+                href="/users"
+              >
+                Users
+              </Link>
+            </li>
+            <li>
+              <Link
+                className={`${"nav-list__item"} ${pathname === "/addProduct" ? "active" : ""}`}
+                href="/addProduct"
+              >
+                Add Product
+              </Link>
+            </li>
+            <li>
+              <Link
+                className={`${"nav-list__item"} ${pathname === "/addCategory" ? "active" : ""}`}
+                href="/addCategory"
+              >
+                Add Category
+              </Link>
+            </li>
+            <li>
+              <Link
                 className={`${"nav-list__item"} ${pathname === "/settingsUser" ? "active" : ""}`}
                 href="/settingsUser"
               >

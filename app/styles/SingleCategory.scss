@@ -1,0 +1,52 @@
+.singleCat {
+    margin: 0 auto;
+
+    .singleCat-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 10px;
+
+        & h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #d6ddca;
+        }
+
+        .singleCat__info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .singleCat__info--cards {
+                margin-top: 20px;
+                display: grid;
+                gap: 16px;
+                grid-template-columns: repeat(3, 1fr);
+                text-align: center;
+
+                .singleCat__info--cards__items {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: start;
+                    row-gap: 7px;
+
+                    padding: 12px;
+
+                    width: 375px;
+                    background-color: #379683ce;
+                    border: 1px solid #05386B;
+                    border-radius: 7px;
+
+                    & a {
+                        color: #05386B;
+                    }
+                }
+            }
+
+        }
+    }
+}

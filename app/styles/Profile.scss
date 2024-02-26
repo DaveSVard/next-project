@@ -1,13 +1,12 @@
 .profile {
     margin-top: 10px;
-    // background-color: red;
 
     .profile-wrapper {
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        align-items: start;
         justify-content: center;
         row-gap: 10px;
+        column-gap: 50px;
 
         & h3 {
             font-size: 20px;
@@ -15,10 +14,113 @@
             color: #d6ddca;
         }
 
+        .profile__info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            row-gap: 5px;
+
+            & img {
+                border-radius: 7px;
+                box-shadow: 3px 2px 5px #047035;
+            }
+
+            .profile__info-search {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                justify-content: center;
+                row-gap: 10px;
+                width: 200px;
+                margin-top: 20px;
+
+                & select {
+                    width: 100%;
+                    text-align: center;
+                }
+
+                .search-form {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: start;
+                    justify-content: center;
+                    row-gap: 7px;
+
+                    .search_form--inner__div {
+                        background-color: #05386B;
+                        color: #d6ddca;
+                        padding: 5px;
+                        border-radius: 7px;
+
+                        .search_form--items {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            column-gap: 10px;
+                        }
+
+                        & > div {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            column-gap: 30px;
+                        }
+                        
+                    }
+
+                    & button {
+                        width: 200px;
+                    }
+                }
+
+                .filters {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    row-gap: 5px;
+                    padding: 10px;
+                    background-color: #05386B;
+                    box-shadow: 3px 2px 5px #047035;
+
+                    & input {
+                        width: 100%;
+                        height: 30px;
+                        padding: 12px;
+                        border: 1px solid #04703575;
+                        border-radius: 5px;
+                        text-align: center;
+                        color: black;
+                    }
+
+                    .filters__item {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        row-gap: 5px;
+
+                        & button {
+                            width: 100%;
+                            height: 25px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+                }
+
+
+            }
+        }
+
         .profile-cards {
             display: grid;
             gap: 16px;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
+            text-align: center;
+
 
             .profile-cards__item {
                 display: flex;

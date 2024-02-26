@@ -1,0 +1,57 @@
+.create {
+    margin: 0 auto;
+
+    .create-wrapper {
+        margin: 0 auto;
+        padding: 10px;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 10px;
+
+        background-color: #379683;
+        border-radius: 10px;
+        box-shadow: 3px 2px 7px #047035;
+
+        & h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #EDF5E1;
+        }
+
+        .create-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            row-gap: 10px;
+
+            & input, & select {
+                width: 100%;
+                height: 50px;
+                padding: 12px;
+                border: 1px solid #04703575;
+                border-radius: 5px;
+                text-align: center;
+                color: #EDF5E1;
+                position: relative;
+
+                background-color: #05386B;
+            }
+
+            .error {
+                margin-bottom: 5px;
+                margin-top: 5px;
+                text-align: center;
+                color: rgb(231, 0, 0);
+            }
+
+            & input::placeholder {
+                color: #EDF5E1;
+                
+            }
+        }
+    }
+}
