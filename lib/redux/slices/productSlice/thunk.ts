@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { myAxios } from "../..";
-import { ProductT } from "@/type";
 
 export const getAllProductsAPI = createAsyncThunk(
     "getAllProducts",
@@ -20,8 +19,8 @@ export const getSingleProductAPI = createAsyncThunk(
 
 export const createProductAPI = createAsyncThunk(
     "createProduct",
-    async (obj:{title:string, price:number, description:string, categoryId:number, images:string[]}) => {
-        const {data} = await myAxios.post("/products/", obj)
+    async (obj:{title:string, price:number, description:string, categoryId:number, images:string}) => {
+        const {data} = await myAxios.post("/products", {...obj, images:[obj.images]})
         return data
     }
 )

@@ -6,13 +6,23 @@ import "./../styles/Profile.scss"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 
+import Slider from "@mui/material/Slider";
+import { ProductT } from "@/type"
+
+// import "rsuite/dist/rsuite.css";
+
+
 export default function Profile () {
     const {user, users} = useSelector(selectUser)
+    const [count, setCount] = useState<number>(0)
     const {products} = useSelector(selectProduct)
     const {categories} = useSelector(selectCategory)
     const dispatch = useDispatch()
     const router = useRouter()
     const {register, handleSubmit} = useForm<{prodId:number}>()
+
+    const [minValue, setMinValue] = useState<number>(0)
+    const [maxValue, setMaxValue] = useState<number>(0)
 
     useEffect(() => {
         dispatch(profileAPI()).unwrap().
@@ -25,6 +35,16 @@ export default function Profile () {
         dispatch(getAllUsersAPI())
     }, [])
 
+    useEffect(()=>{
+        if(products.length && count == 0) {
+            setCount(count+1)
+            const arr = [...products]
+            const sortedArray = arr?.sort((a:any, b:any) => a.price - b.price)
+            setMinValue(sortedArray[0].price)
+            setMaxValue(sortedArray[products.length - 1].price)
+        }
+    }, [products])
+
     const filterByCategory = (data:{prodId:number}) => {
         dispatch(filterProductByCategoriesAPI(+data.prodId))
     }
@@ -33,8 +53,19 @@ export default function Profile () {
     const open:string = "click to open"
     const close:string = "click to close"
 
-    const [min, setMin] = useState<number>(0)
-    const [max, setMax] = useState<number>(0)
+    const [min, setMin] = useState<number>()
+    const [max, setMax] = useState<number>()
+
+
+    const [range, setRange] = useState<number[]>([0, 0])
+    const handleChange = (event:any, newValue:number[]) => {
+        console.log("newValue =>",newValue)
+        setRange(newValue)
+        setMin(newValue[0])
+        setMax(newValue[1])
+    }
+
+
 
     return(
         <div className="profile">
@@ -73,8 +104,10 @@ export default function Profile () {
                                 </div>
                                 <span className="row"></span>
                                 <div className="filters__item">
-                                    <input placeholder="Enter product min-price" onChange={(e) => setMin(+e.target.value)}/>
-                                    <input placeholder="Enter product max-price" onChange={(e) => setMax(+e.target.value)}/>
+                                    {/* <input placeholder="Enter product min-price" onChange={(e) => setMin(+e.target.value)}/>
+                                    <input placeholder="Enter product max-price" onChange={(e) => setMax(+e.target.value)}/> */}
+                                    <h3>Filter by range</h3>
+                                    <Slider max={maxValue} min={minValue} value = {range} onChange = {handleChange} valueLabelDisplay="auto"/>
                                     <button className="btn-1" onClick={() => dispatch(filterProductsByRangeAPI({min: min, max: max}))}>Find!</button>
                                 </div>
                             </div> : <></>}

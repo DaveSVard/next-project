@@ -7,22 +7,20 @@ import { createProductAPI, getAllCategoriesAPI, selectCategory, useDispatch, use
 import { useEffect } from "react"
 
 export default function addProduct () {
-    const {register, handleSubmit, reset, formState: {errors}} = useForm<{title:string, price:number, description:string, categoryId:number, images:string[]}>()
+    const {register, handleSubmit, reset, formState: {errors}} = useForm<{title:string, price:number, description:string, categoryId:number, images:string}>()
     const {categories} = useSelector(selectCategory)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getAllCategoriesAPI())
     }, [])
 
-    const createProduct = (data:{title:string, price:number, description:string, categoryId:number, images:string[]}) => {
-        let imagesArr = []
-        imagesArr.push(data.images)
+    const createProduct = (data:{title:string, price:number, description:string, categoryId:number, images:string}) => {
         if(data.categoryId && data.price) {
             data.categoryId = +data.categoryId
             data.price = +data.price
         }
         console.log(data);
-        dispatch(createProductAPI({title:data.title, price:data.price, description: data.description, categoryId: data.categoryId, images: [...data.images]}))
+        dispatch(createProductAPI(data))
     }
 
     return(
