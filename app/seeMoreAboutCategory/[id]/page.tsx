@@ -1,8 +1,8 @@
 "use client"
 
-import { filterProductByCategoriesAPI, getSingleCategoryAPI, selectCategory, selectProduct, useDispatch, useSelector } from "@/lib/redux"
+import { deleteCategoryAPI, filterProductByCategoriesAPI, getSingleCategoryAPI, selectCategory, selectProduct, useDispatch, useSelector } from "@/lib/redux"
 import { useEffect } from "react"
-import { useParams } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 import "./../../styles/SingleCategory.scss"
 import Link from "next/link"
 
@@ -11,6 +11,7 @@ export default function Id () {
     const dispatch = useDispatch()
     const {products} = useSelector(selectProduct)
     const {category} = useSelector(selectCategory)
+    const router = useRouter()
     useEffect(() => {
         dispatch(getSingleCategoryAPI(+id))
         dispatch(filterProductByCategoriesAPI(+id))
@@ -25,6 +26,10 @@ export default function Id () {
             <div className="container">
                 <div className="singleCat-wrapper">
                     <h3>About category: {category.name}</h3>
+                    <button className="btn-2" onClick={() => {
+                        dispatch(deleteCategoryAPI(category.id))
+                        router.push("/profile")
+                    }}>Delete category</button>
                     <div className="singleCat__info">
                         <h3>Products in this category</h3>
                         <div className="singleCat__info--cards">
